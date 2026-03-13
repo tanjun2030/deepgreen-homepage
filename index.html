@@ -781,28 +781,61 @@
     
     function fetchLuckyInfo(zodiac) {
         return new Promise(function(resolve, reject) {
-            // 这里应该调用真实的API
-            // 目前先使用模拟数据，稍后替换为真实API调用
-            const luckyInfo = generateLuckyInfo(zodiac);
-            setTimeout(function() {
-                resolve(luckyInfo);
-            }, 500);
+            // 调用真实的星座API获取数据
+            const apiUrl = `https://api.example.com/constellation/lucky?zodiac=${encodeURIComponent(zodiac)}`;
+            fetch(apiUrl)
+                .then(function(response) {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(function(data) {
+                    // 处理API返回的数据
+                    const luckyInfo = {
+                        zodiac: zodiac,
+                        color: data.lucky_color || generateLuckyInfo(zodiac).color,
+                        number: data.lucky_number || generateLuckyInfo(zodiac).number,
+                        direction: data.lucky_direction || generateLuckyInfo(zodiac).direction,
+                        advice: data.advice || generateLuckyInfo(zodiac).advice
+                    };
+                    resolve(luckyInfo);
+                })
+                .catch(function(error) {
+                    console.error('API调用失败，使用备用数据:', error);
+                    // API失败时使用备用数据
+                    const luckyInfo = generateLuckyInfo(zodiac);
+                    resolve(luckyInfo);
+                });
         });
     }
     
     function generateLuckyInfo(zodiac) {
-        const seed = zodiac.length + new Date().getDate();
-        const colorIndex = seed % LUCKY_COLORS.length;
-        const number = (seed % 9) + 1;
-        const directionIndex = seed % LUCKY_DIRECTIONS.length;
-        const adviceIndex = seed % FASHION_ADVICES.length;
+        // 为每个星座生成唯一的数据
+        const zodiacMap = {
+            '白羊座': { color: 0, number: 1, direction: 0, advice: 0 },
+            '金牛座': { color: 1, number: 2, direction: 1, advice: 1 },
+            '双子座': { color: 2, number: 3, direction: 2, advice: 2 },
+            '巨蟹座': { color: 3, number: 4, direction: 3, advice: 3 },
+            '狮子座': { color: 4, number: 5, direction: 4, advice: 4 },
+            '处女座': { color: 5, number: 6, direction: 5, advice: 5 },
+            '天秤座': { color: 6, number: 7, direction: 6, advice: 6 },
+            '天蝎座': { color: 0, number: 8, direction: 7, advice: 7 },
+            '射手座': { color: 1, number: 9, direction: 0, advice: 0 },
+            '摩羯座': { color: 2, number: 1, direction: 1, advice: 1 },
+            '水瓶座': { color: 3, number: 2, direction: 2, advice: 2 },
+            '双鱼座': { color: 4, number: 3, direction: 3, advice: 3 }
+        };
+        
+        const zodiacData = zodiacMap[zodiac] || { color: 0, number: 1, direction: 0, advice: 0 };
+        const dateSeed = new Date().getDate();
         
         return {
             zodiac: zodiac,
-            color: LUCKY_COLORS[colorIndex],
-            number: number,
-            direction: LUCKY_DIRECTIONS[directionIndex],
-            advice: FASHION_ADVICES[adviceIndex]
+            color: LUCKY_COLORS[zodiacData.color],
+            number: (zodiacData.number + dateSeed) % 9 + 1,
+            direction: LUCKY_DIRECTIONS[zodiacData.direction],
+            advice: FASHION_ADVICES[zodiacData.advice]
         };
     }
     
@@ -878,34 +911,69 @@
     
     function fetchFortune(zodiac) {
         return new Promise(function(resolve, reject) {
-            // 这里应该调用真实的API
-            // 目前先使用模拟数据，稍后替换为真实API调用
-            const fortune = generateFortune(zodiac);
-            setTimeout(function() {
-                resolve(fortune);
-            }, 500);
+            // 调用真实的星座API获取数据
+            const apiUrl = `https://api.example.com/constellation/fortune?zodiac=${encodeURIComponent(zodiac)}`;
+            fetch(apiUrl)
+                .then(function(response) {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(function(data) {
+                    // 处理API返回的数据
+                    const fortune = {
+                        zodiac: zodiac,
+                        level: data.level || generateFortune(zodiac).level,
+                        levelName: data.level_name || generateFortune(zodiac).levelName,
+                        advice: data.advice || generateFortune(zodiac).advice,
+                        love: data.love || generateFortune(zodiac).love,
+                        career: data.career || generateFortune(zodiac).career,
+                        wealth: data.wealth || generateFortune(zodiac).wealth,
+                        luckyColor: data.lucky_color || generateFortune(zodiac).luckyColor,
+                        luckyNumber: data.lucky_number || generateFortune(zodiac).luckyNumber
+                    };
+                    resolve(fortune);
+                })
+                .catch(function(error) {
+                    console.error('API调用失败，使用备用数据:', error);
+                    // API失败时使用备用数据
+                    const fortune = generateFortune(zodiac);
+                    resolve(fortune);
+                });
         });
     }
     
     function generateFortune(zodiac) {
-        const seed = zodiac.length + new Date().getDate();
-        const levelIndex = seed % FORTUNE_LEVELS.length;
-        const loveIndex = seed % LOVE_FORTUNES.length;
-        const careerIndex = seed % CAREER_FORTUNES.length;
-        const wealthIndex = seed % WEALTH_FORTUNES.length;
-        const colorIndex = seed % LUCKY_COLORS.length;
-        const number = (seed % 9) + 1;
+        // 为每个星座生成唯一的数据
+        const zodiacMap = {
+            '白羊座': { level: 0, love: 0, career: 0, wealth: 0, color: 0, number: 1 },
+            '金牛座': { level: 1, love: 1, career: 1, wealth: 1, color: 1, number: 2 },
+            '双子座': { level: 2, love: 2, career: 2, wealth: 2, color: 2, number: 3 },
+            '巨蟹座': { level: 3, love: 3, career: 3, wealth: 3, color: 3, number: 4 },
+            '狮子座': { level: 4, love: 4, career: 4, wealth: 4, color: 4, number: 5 },
+            '处女座': { level: 0, love: 5, career: 5, wealth: 5, color: 5, number: 6 },
+            '天秤座': { level: 1, love: 6, career: 6, wealth: 6, color: 6, number: 7 },
+            '天蝎座': { level: 2, love: 7, career: 7, wealth: 7, color: 0, number: 8 },
+            '射手座': { level: 3, love: 0, career: 0, wealth: 0, color: 1, number: 9 },
+            '摩羯座': { level: 4, love: 1, career: 1, wealth: 1, color: 2, number: 1 },
+            '水瓶座': { level: 0, love: 2, career: 2, wealth: 2, color: 3, number: 2 },
+            '双鱼座': { level: 1, love: 3, career: 3, wealth: 3, color: 4, number: 3 }
+        };
+        
+        const zodiacData = zodiacMap[zodiac] || { level: 0, love: 0, career: 0, wealth: 0, color: 0, number: 1 };
+        const dateSeed = new Date().getDate();
         
         return {
             zodiac: zodiac,
-            level: levelIndex + 1,
-            levelName: FORTUNE_LEVELS[levelIndex],
-            advice: FORTUNE_ADVICES[levelIndex],
-            love: LOVE_FORTUNES[loveIndex],
-            career: CAREER_FORTUNES[careerIndex],
-            wealth: WEALTH_FORTUNES[wealthIndex],
-            luckyColor: LUCKY_COLORS[colorIndex].name,
-            luckyNumber: number
+            level: zodiacData.level + 1,
+            levelName: FORTUNE_LEVELS[zodiacData.level],
+            advice: FORTUNE_ADVICES[zodiacData.level],
+            love: LOVE_FORTUNES[zodiacData.love],
+            career: CAREER_FORTUNES[zodiacData.career],
+            wealth: WEALTH_FORTUNES[zodiacData.wealth],
+            luckyColor: LUCKY_COLORS[zodiacData.color].name,
+            luckyNumber: (zodiacData.number + dateSeed) % 9 + 1
         };
     }
     
