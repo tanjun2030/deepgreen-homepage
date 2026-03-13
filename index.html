@@ -719,12 +719,16 @@
     
     function displayDailySentence(sentence) {
         const resultEl = document.getElementById('daily-result');
+        // 先设置过渡效果
+        resultEl.style.transition = 'opacity 0.2s ease';
+        // 淡出当前内容
         resultEl.style.opacity = '0';
         setTimeout(function() {
+            // 完全透明后清空并设置新内容
             resultEl.textContent = sentence;
-            resultEl.style.transition = 'opacity 0.3s';
+            // 淡入新内容
             resultEl.style.opacity = '1';
-        }, 50);
+        }, 200);
     }
     
     function updateDailyCategoryUI(category) {
