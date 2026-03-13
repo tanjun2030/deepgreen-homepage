@@ -320,75 +320,75 @@
             <h2 style="text-align: center; color: white; font-size: 24px; font-weight: 700; margin-bottom: 24px;">🎨 今日幸运色</h2>
             
             <!-- 12个星座直接点击交互 -->
-            <div class="zodiac-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 24px;">
-                <div class="zodiac-item" onclick="getLuckyInfo('白羊座')" style="background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                    <div style="font-size: 18px;">♈ 白羊座</div>
+            <div class="zodiac-grid" style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-bottom: 24px;">
+                <div class="zodiac-item" onclick="selectZodiac(this, '白羊座', 'lucky')" style="background: rgba(255, 255, 255, 0.1); padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.1s; font-size: 14px;">
+                    <div>♈ 白羊座</div>
                 </div>
-                <div class="zodiac-item" onclick="getLuckyInfo('金牛座')" style="background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                    <div style="font-size: 18px;">♉ 金牛座</div>
+                <div class="zodiac-item" onclick="selectZodiac(this, '金牛座', 'lucky')" style="background: rgba(255, 255, 255, 0.1); padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.1s; font-size: 14px;">
+                    <div>♉ 金牛座</div>
                 </div>
-                <div class="zodiac-item" onclick="getLuckyInfo('双子座')" style="background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                    <div style="font-size: 18px;">♊ 双子座</div>
+                <div class="zodiac-item" onclick="selectZodiac(this, '双子座', 'lucky')" style="background: rgba(255, 255, 255, 0.1); padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.1s; font-size: 14px;">
+                    <div>♊ 双子座</div>
                 </div>
-                <div class="zodiac-item" onclick="getLuckyInfo('巨蟹座')" style="background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                    <div style="font-size: 18px;">♋ 巨蟹座</div>
+                <div class="zodiac-item" onclick="selectZodiac(this, '巨蟹座', 'lucky')" style="background: rgba(255, 255, 255, 0.1); padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.1s; font-size: 14px;">
+                    <div>♋ 巨蟹座</div>
                 </div>
-                <div class="zodiac-item" onclick="getLuckyInfo('狮子座')" style="background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                    <div style="font-size: 18px;">♌ 狮子座</div>
+                <div class="zodiac-item" onclick="selectZodiac(this, '狮子座', 'lucky')" style="background: rgba(255, 255, 255, 0.1); padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.1s; font-size: 14px;">
+                    <div>♌ 狮子座</div>
                 </div>
-                <div class="zodiac-item" onclick="getLuckyInfo('处女座')" style="background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                    <div style="font-size: 18px;">♍ 处女座</div>
+                <div class="zodiac-item" onclick="selectZodiac(this, '处女座', 'lucky')" style="background: rgba(255, 255, 255, 0.1); padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.1s; font-size: 14px;">
+                    <div>♍ 处女座</div>
                 </div>
-                <div class="zodiac-item" onclick="getLuckyInfo('天秤座')" style="background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                    <div style="font-size: 18px;">♎ 天秤座</div>
+                <div class="zodiac-item" onclick="selectZodiac(this, '天秤座', 'lucky')" style="background: rgba(255, 255, 255, 0.1); padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.1s; font-size: 14px;">
+                    <div>♎ 天秤座</div>
                 </div>
-                <div class="zodiac-item" onclick="getLuckyInfo('天蝎座')" style="background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                    <div style="font-size: 18px;">♏ 天蝎座</div>
+                <div class="zodiac-item" onclick="selectZodiac(this, '天蝎座', 'lucky')" style="background: rgba(255, 255, 255, 0.1); padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.1s; font-size: 14px;">
+                    <div>♏ 天蝎座</div>
                 </div>
-                <div class="zodiac-item" onclick="getLuckyInfo('射手座')" style="background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                    <div style="font-size: 18px;">♐ 射手座</div>
+                <div class="zodiac-item" onclick="selectZodiac(this, '射手座', 'lucky')" style="background: rgba(255, 255, 255, 0.1); padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.1s; font-size: 14px;">
+                    <div>♐ 射手座</div>
                 </div>
-                <div class="zodiac-item" onclick="getLuckyInfo('摩羯座')" style="background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                    <div style="font-size: 18px;">♑ 摩羯座</div>
+                <div class="zodiac-item" onclick="selectZodiac(this, '摩羯座', 'lucky')" style="background: rgba(255, 255, 255, 0.1); padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.1s; font-size: 14px;">
+                    <div>♑ 摩羯座</div>
                 </div>
-                <div class="zodiac-item" onclick="getLuckyInfo('水瓶座')" style="background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                    <div style="font-size: 18px;">♒ 水瓶座</div>
+                <div class="zodiac-item" onclick="selectZodiac(this, '水瓶座', 'lucky')" style="background: rgba(255, 255, 255, 0.1); padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.1s; font-size: 14px;">
+                    <div>♒ 水瓶座</div>
                 </div>
-                <div class="zodiac-item" onclick="getLuckyInfo('双鱼座')" style="background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                    <div style="font-size: 18px;">♓ 双鱼座</div>
+                <div class="zodiac-item" onclick="selectZodiac(this, '双鱼座', 'lucky')" style="background: rgba(255, 255, 255, 0.1); padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.1s; font-size: 14px;">
+                    <div>♓ 双鱼座</div>
                 </div>
             </div>
             
-            <div id="lucky-result" style="display: none;">
+            <div id="lucky-result" style="display: none; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 16px; border: 2px solid rgba(255, 255, 255, 0.2); padding: 20px;">
                 <!-- 幸运色 -->
-                <div class="result-box" style="background: linear-gradient(135deg, var(--lucky-color) 0%, var(--lucky-color-light) 100%);">
+                <div class="result-box" style="background: linear-gradient(135deg, var(--lucky-color) 0%, var(--lucky-color-light) 100%); border-radius: 12px; padding: 16px; margin-bottom: 16px;">
                     <div style="text-align: center;">
                         <p style="color: rgba(255, 255, 255, 0.8); font-size: 14px; margin-bottom: 8px;">今日幸运色</p>
-                        <p id="lucky-color-name" style="font-size: 28px; font-weight: 700; color: white;"></p>
+                        <p id="lucky-color-name" style="font-size: 24px; font-weight: 700; color: white;"></p>
                     </div>
                 </div>
                 
                 <!-- 幸运数字和方位 -->
-                <div class="lucky-grid">
-                    <div class="lucky-item">
-                        <div class="lucky-label">幸运数字</div>
-                        <div id="lucky-number" class="lucky-value">--</div>
+                <div class="lucky-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+                    <div class="lucky-item" style="background: rgba(255, 255, 255, 0.08); padding: 12px; border-radius: 10px;">
+                        <div class="lucky-label" style="color: rgba(255, 255, 255, 0.6); font-size: 12px; margin-bottom: 4px;">幸运数字</div>
+                        <div id="lucky-number" class="lucky-value" style="font-size: 18px; color: white; font-weight: 600;">--</div>
                     </div>
-                    <div class="lucky-item">
-                        <div class="lucky-label">幸运方位</div>
-                        <div id="lucky-direction" class="lucky-value">--</div>
+                    <div class="lucky-item" style="background: rgba(255, 255, 255, 0.08); padding: 12px; border-radius: 10px;">
+                        <div class="lucky-label" style="color: rgba(255, 255, 255, 0.6); font-size: 12px; margin-bottom: 4px;">幸运方位</div>
+                        <div id="lucky-direction" class="lucky-value" style="font-size: 18px; color: white; font-weight: 600;">--</div>
                     </div>
                 </div>
                 
                 <!-- 穿搭建议 -->
-                <div class="result-box" style="text-align: left;">
+                <div class="result-box" style="text-align: left; background: rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 16px; margin-bottom: 16px;">
                     <p style="color: rgba(255, 255, 255, 0.7); font-size: 14px; margin-bottom: 8px;">💡 今日穿搭建议</p>
-                    <p id="lucky-advice" style="color: white; font-size: 16px; line-height: 1.6;"></p>
+                    <p id="lucky-advice" style="color: white; font-size: 15px; line-height: 1.6;">--</p>
                 </div>
                 
-                <div class="action-buttons">
-                    <button class="action-btn" onclick="shareLuckyInfo()">📤分享</button>
-                    <button class="action-btn" onclick="copyLuckyInfo()">📋复制</button>
+                <div class="action-buttons" style="display: flex; gap: 10px; justify-content: center; margin-top: 16px;">
+                    <button class="action-btn" onclick="shareLuckyInfo()" style="padding: 10px 20px; border-radius: 12px; font-size: 14px; font-weight: 600; background: rgba(255, 255, 255, 0.15); color: white; border: 1px solid rgba(255, 255, 255, 0.25); transition: all 0.2s; cursor: pointer;">📤分享</button>
+                    <button class="action-btn" onclick="copyLuckyInfo()" style="padding: 10px 20px; border-radius: 12px; font-size: 14px; font-weight: 600; background: rgba(255, 255, 255, 0.15); color: white; border: 1px solid rgba(255, 255, 255, 0.25); transition: all 0.2s; cursor: pointer;">📋复制</button>
                 </div>
             </div>
             
@@ -404,92 +404,92 @@
             <h2 style="text-align: center; color: white; font-size: 24px; font-weight: 700; margin-bottom: 24px;">⭐ 今日运势</h2>
             
             <!-- 12个星座直接点击交互 -->
-            <div class="zodiac-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 24px;">
-                <div class="zodiac-item" onclick="getFortune('白羊座')" style="background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                    <div style="font-size: 18px;">♈ 白羊座</div>
+            <div class="zodiac-grid" style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-bottom: 24px;">
+                <div class="zodiac-item" onclick="selectZodiac(this, '白羊座', 'fortune')" style="background: rgba(255, 255, 255, 0.1); padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.1s; font-size: 14px;">
+                    <div>♈ 白羊座</div>
                 </div>
-                <div class="zodiac-item" onclick="getFortune('金牛座')" style="background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                    <div style="font-size: 18px;">♉ 金牛座</div>
+                <div class="zodiac-item" onclick="selectZodiac(this, '金牛座', 'fortune')" style="background: rgba(255, 255, 255, 0.1); padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.1s; font-size: 14px;">
+                    <div>♉ 金牛座</div>
                 </div>
-                <div class="zodiac-item" onclick="getFortune('双子座')" style="background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                    <div style="font-size: 18px;">♊ 双子座</div>
+                <div class="zodiac-item" onclick="selectZodiac(this, '双子座', 'fortune')" style="background: rgba(255, 255, 255, 0.1); padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.1s; font-size: 14px;">
+                    <div>♊ 双子座</div>
                 </div>
-                <div class="zodiac-item" onclick="getFortune('巨蟹座')" style="background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                    <div style="font-size: 18px;">♋ 巨蟹座</div>
+                <div class="zodiac-item" onclick="selectZodiac(this, '巨蟹座', 'fortune')" style="background: rgba(255, 255, 255, 0.1); padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.1s; font-size: 14px;">
+                    <div>♋ 巨蟹座</div>
                 </div>
-                <div class="zodiac-item" onclick="getFortune('狮子座')" style="background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                    <div style="font-size: 18px;">♌ 狮子座</div>
+                <div class="zodiac-item" onclick="selectZodiac(this, '狮子座', 'fortune')" style="background: rgba(255, 255, 255, 0.1); padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.1s; font-size: 14px;">
+                    <div>♌ 狮子座</div>
                 </div>
-                <div class="zodiac-item" onclick="getFortune('处女座')" style="background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                    <div style="font-size: 18px;">♍ 处女座</div>
+                <div class="zodiac-item" onclick="selectZodiac(this, '处女座', 'fortune')" style="background: rgba(255, 255, 255, 0.1); padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.1s; font-size: 14px;">
+                    <div>♍ 处女座</div>
                 </div>
-                <div class="zodiac-item" onclick="getFortune('天秤座')" style="background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                    <div style="font-size: 18px;">♎ 天秤座</div>
+                <div class="zodiac-item" onclick="selectZodiac(this, '天秤座', 'fortune')" style="background: rgba(255, 255, 255, 0.1); padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.1s; font-size: 14px;">
+                    <div>♎ 天秤座</div>
                 </div>
-                <div class="zodiac-item" onclick="getFortune('天蝎座')" style="background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                    <div style="font-size: 18px;">♏ 天蝎座</div>
+                <div class="zodiac-item" onclick="selectZodiac(this, '天蝎座', 'fortune')" style="background: rgba(255, 255, 255, 0.1); padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.1s; font-size: 14px;">
+                    <div>♏ 天蝎座</div>
                 </div>
-                <div class="zodiac-item" onclick="getFortune('射手座')" style="background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                    <div style="font-size: 18px;">♐ 射手座</div>
+                <div class="zodiac-item" onclick="selectZodiac(this, '射手座', 'fortune')" style="background: rgba(255, 255, 255, 0.1); padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.1s; font-size: 14px;">
+                    <div>♐ 射手座</div>
                 </div>
-                <div class="zodiac-item" onclick="getFortune('摩羯座')" style="background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                    <div style="font-size: 18px;">♑ 摩羯座</div>
+                <div class="zodiac-item" onclick="selectZodiac(this, '摩羯座', 'fortune')" style="background: rgba(255, 255, 255, 0.1); padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.1s; font-size: 14px;">
+                    <div>♑ 摩羯座</div>
                 </div>
-                <div class="zodiac-item" onclick="getFortune('水瓶座')" style="background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                    <div style="font-size: 18px;">♒ 水瓶座</div>
+                <div class="zodiac-item" onclick="selectZodiac(this, '水瓶座', 'fortune')" style="background: rgba(255, 255, 255, 0.1); padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.1s; font-size: 14px;">
+                    <div>♒ 水瓶座</div>
                 </div>
-                <div class="zodiac-item" onclick="getFortune('双鱼座')" style="background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.2s;">
-                    <div style="font-size: 18px;">♓ 双鱼座</div>
+                <div class="zodiac-item" onclick="selectZodiac(this, '双鱼座', 'fortune')" style="background: rgba(255, 255, 255, 0.1); padding: 8px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.1s; font-size: 14px;">
+                    <div>♓ 双鱼座</div>
                 </div>
             </div>
             
-            <div id="fortune-result" style="display: none;">
+            <div id="fortune-result" style="display: none; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 16px; border: 2px solid rgba(255, 255, 255, 0.2); padding: 20px;">
                 <!-- 星级评分 -->
-                <div class="result-box">
+                <div class="result-box" style="background: rgba(255, 255, 255, 0.08); padding: 16px; border-radius: 12px; margin-bottom: 16px;">
                     <div style="text-align: center;">
                         <p style="color: rgba(255, 255, 255, 0.7); font-size: 14px; margin-bottom: 8px;">今日运势</p>
-                        <div id="fortune-stars" class="stars"></div>
-                        <p id="fortune-level" style="color: white; font-size: 20px; font-weight: 700;"></p>
+                        <div id="fortune-stars" class="stars" style="font-size: 24px; margin-bottom: 8px;"></div>
+                        <p id="fortune-level" style="color: white; font-size: 18px; font-weight: 700;"></p>
                     </div>
                 </div>
                 
                 <!-- 三大运势 -->
                 <div style="margin-bottom: 16px; display: grid; grid-template-columns: 1fr; gap: 12px;">
-                    <div class="lucky-item" style="text-align: left;">
-                        <div class="lucky-label">💕 爱情</div>
-                        <div id="fortune-love" style="color: white; font-size: 15px; line-height: 1.5;"></div>
+                    <div class="lucky-item" style="text-align: left; background: rgba(255, 255, 255, 0.08); padding: 12px; border-radius: 10px;">
+                        <div class="lucky-label" style="color: rgba(255, 255, 255, 0.6); font-size: 12px; margin-bottom: 4px;">💕 爱情</div>
+                        <div id="fortune-love" style="color: white; font-size: 15px; line-height: 1.5;">--</div>
                     </div>
-                    <div class="lucky-item" style="text-align: left;">
-                        <div class="lucky-label">💼 事业</div>
-                        <div id="fortune-career" style="color: white; font-size: 15px; line-height: 1.5;"></div>
+                    <div class="lucky-item" style="text-align: left; background: rgba(255, 255, 255, 0.08); padding: 12px; border-radius: 10px;">
+                        <div class="lucky-label" style="color: rgba(255, 255, 255, 0.6); font-size: 12px; margin-bottom: 4px;">💼 事业</div>
+                        <div id="fortune-career" style="color: white; font-size: 15px; line-height: 1.5;">--</div>
                     </div>
-                    <div class="lucky-item" style="text-align: left;">
-                        <div class="lucky-label">💰 财运</div>
-                        <div id="fortune-wealth" style="color: white; font-size: 15px; line-height: 1.5;"></div>
+                    <div class="lucky-item" style="text-align: left; background: rgba(255, 255, 255, 0.08); padding: 12px; border-radius: 10px;">
+                        <div class="lucky-label" style="color: rgba(255, 255, 255, 0.6); font-size: 12px; margin-bottom: 4px;">💰 财运</div>
+                        <div id="fortune-wealth" style="color: white; font-size: 15px; line-height: 1.5;">--</div>
                     </div>
                 </div>
                 
                 <!-- 今日建议 -->
-                <div class="result-box" style="text-align: left;">
+                <div class="result-box" style="text-align: left; background: rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 16px; margin-bottom: 16px;">
                     <p style="color: rgba(255, 255, 255, 0.7); font-size: 14px; margin-bottom: 8px;">💡 今日建议</p>
-                    <p id="fortune-advice" style="color: white; font-size: 16px; line-height: 1.6;"></p>
+                    <p id="fortune-advice" style="color: white; font-size: 16px; line-height: 1.6;">--</p>
                 </div>
                 
                 <!-- 幸运物品 -->
-                <div class="lucky-grid">
-                    <div class="lucky-item">
-                        <div class="lucky-label">🎨 幸运色</div>
-                        <div id="fortune-lucky-color" class="lucky-value">--</div>
+                <div class="lucky-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+                    <div class="lucky-item" style="background: rgba(255, 255, 255, 0.08); padding: 12px; border-radius: 10px;">
+                        <div class="lucky-label" style="color: rgba(255, 255, 255, 0.6); font-size: 12px; margin-bottom: 4px;">🎨 幸运色</div>
+                        <div id="fortune-lucky-color" class="lucky-value" style="font-size: 18px; color: white; font-weight: 600;">--</div>
                     </div>
-                    <div class="lucky-item">
-                        <div class="lucky-label">🔢 幸运数字</div>
-                        <div id="fortune-lucky-number" class="lucky-value">--</div>
+                    <div class="lucky-item" style="background: rgba(255, 255, 255, 0.08); padding: 12px; border-radius: 10px;">
+                        <div class="lucky-label" style="color: rgba(255, 255, 255, 0.6); font-size: 12px; margin-bottom: 4px;">🔢 幸运数字</div>
+                        <div id="fortune-lucky-number" class="lucky-value" style="font-size: 18px; color: white; font-weight: 600;">--</div>
                     </div>
                 </div>
                 
-                <div class="action-buttons">
-                    <button class="action-btn" onclick="shareFortune()">📤分享</button>
-                    <button class="action-btn" onclick="copyFortune()">📋复制</button>
+                <div class="action-buttons" style="display: flex; gap: 10px; justify-content: center; margin-top: 16px;">
+                    <button class="action-btn" onclick="shareFortune()" style="padding: 10px 20px; border-radius: 12px; font-size: 14px; font-weight: 600; background: rgba(255, 255, 255, 0.15); color: white; border: 1px solid rgba(255, 255, 255, 0.25); transition: all 0.2s; cursor: pointer;">📤分享</button>
+                    <button class="action-btn" onclick="copyFortune()" style="padding: 10px 20px; border-radius: 12px; font-size: 14px; font-weight: 600; background: rgba(255, 255, 255, 0.15); color: white; border: 1px solid rgba(255, 255, 255, 0.25); transition: all 0.2s; cursor: pointer;">📋复制</button>
                 </div>
             </div>
             
@@ -532,6 +532,28 @@
             toast.style.transition = 'all 0.3s';
             setTimeout(function() { toast.remove(); }, 300);
         }, 2000);
+    }
+    
+    // 显示section
+    // 星座选择高亮功能
+    function selectZodiac(element, zodiac, type) {
+        // 移除同类型所有星座的高亮
+        const allItems = element.parentElement.querySelectorAll('.zodiac-item');
+        allItems.forEach(function(item) {
+            item.style.background = 'rgba(255, 255, 255, 0.1)';
+            item.style.border = 'none';
+        });
+        
+        // 高亮当前选择的星座
+        element.style.background = 'rgba(255, 255, 255, 0.3)';
+        element.style.border = '2px solid rgba(255, 255, 255, 0.5)';
+        
+        // 快速响应查询
+        if (type === 'lucky') {
+            getLuckyInfo(zodiac);
+        } else if (type === 'fortune') {
+            getFortune(zodiac);
+        }
     }
     
     // 显示section
@@ -779,34 +801,44 @@
         });
     }
     
+    // 数据缓存
+    const luckyInfoCache = new Map();
+    const fortuneCache = new Map();
+    
+    // 预加载所有星座的数据
+    function preloadData() {
+        const zodiacs = ['白羊座', '金牛座', '双子座', '巨蟹座', '狮子座', '处女座', '天秤座', '天蝎座', '射手座', '摩羯座', '水瓶座', '双鱼座'];
+        zodiacs.forEach(function(zodiac) {
+            const luckyInfo = generateLuckyInfo(zodiac);
+            const fortune = generateFortune(zodiac);
+            luckyInfoCache.set(zodiac, luckyInfo);
+            fortuneCache.set(zodiac, fortune);
+        });
+    }
+    
+    // 页面加载时预加载数据
+    document.addEventListener('DOMContentLoaded', function() {
+        preloadData();
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('almanac-date').value = today;
+    });
+    
     function fetchLuckyInfo(zodiac) {
         return new Promise(function(resolve, reject) {
-            // 调用真实的星座API获取数据
-            const apiUrl = `https://api.example.com/constellation/lucky?zodiac=${encodeURIComponent(zodiac)}`;
-            fetch(apiUrl)
-                .then(function(response) {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(function(data) {
-                    // 处理API返回的数据
-                    const luckyInfo = {
-                        zodiac: zodiac,
-                        color: data.lucky_color || generateLuckyInfo(zodiac).color,
-                        number: data.lucky_number || generateLuckyInfo(zodiac).number,
-                        direction: data.lucky_direction || generateLuckyInfo(zodiac).direction,
-                        advice: data.advice || generateLuckyInfo(zodiac).advice
-                    };
+            // 从缓存中获取数据，100ms内响应
+            if (luckyInfoCache.has(zodiac)) {
+                const data = luckyInfoCache.get(zodiac);
+                setTimeout(function() {
+                    resolve(data);
+                }, 50); // 确保响应时间在100ms内
+            } else {
+                // 缓存未命中时生成新数据
+                const luckyInfo = generateLuckyInfo(zodiac);
+                luckyInfoCache.set(zodiac, luckyInfo);
+                setTimeout(function() {
                     resolve(luckyInfo);
-                })
-                .catch(function(error) {
-                    console.error('API调用失败，使用备用数据:', error);
-                    // API失败时使用备用数据
-                    const luckyInfo = generateLuckyInfo(zodiac);
-                    resolve(luckyInfo);
-                });
+                }, 50);
+            }
         });
     }
     
@@ -911,36 +943,20 @@
     
     function fetchFortune(zodiac) {
         return new Promise(function(resolve, reject) {
-            // 调用真实的星座API获取数据
-            const apiUrl = `https://api.example.com/constellation/fortune?zodiac=${encodeURIComponent(zodiac)}`;
-            fetch(apiUrl)
-                .then(function(response) {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(function(data) {
-                    // 处理API返回的数据
-                    const fortune = {
-                        zodiac: zodiac,
-                        level: data.level || generateFortune(zodiac).level,
-                        levelName: data.level_name || generateFortune(zodiac).levelName,
-                        advice: data.advice || generateFortune(zodiac).advice,
-                        love: data.love || generateFortune(zodiac).love,
-                        career: data.career || generateFortune(zodiac).career,
-                        wealth: data.wealth || generateFortune(zodiac).wealth,
-                        luckyColor: data.lucky_color || generateFortune(zodiac).luckyColor,
-                        luckyNumber: data.lucky_number || generateFortune(zodiac).luckyNumber
-                    };
+            // 从缓存中获取数据，100ms内响应
+            if (fortuneCache.has(zodiac)) {
+                const data = fortuneCache.get(zodiac);
+                setTimeout(function() {
+                    resolve(data);
+                }, 50); // 确保响应时间在100ms内
+            } else {
+                // 缓存未命中时生成新数据
+                const fortune = generateFortune(zodiac);
+                fortuneCache.set(zodiac, fortune);
+                setTimeout(function() {
                     resolve(fortune);
-                })
-                .catch(function(error) {
-                    console.error('API调用失败，使用备用数据:', error);
-                    // API失败时使用备用数据
-                    const fortune = generateFortune(zodiac);
-                    resolve(fortune);
-                });
+                }, 50);
+            }
         });
     }
     
