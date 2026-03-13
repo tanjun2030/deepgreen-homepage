@@ -968,13 +968,13 @@
             '双子座': { level: 2, love: 2, career: 2, wealth: 2, color: 2, number: 3 },
             '巨蟹座': { level: 3, love: 3, career: 3, wealth: 3, color: 3, number: 4 },
             '狮子座': { level: 4, love: 4, career: 4, wealth: 4, color: 4, number: 5 },
-            '处女座': { level: 0, love: 5, career: 5, wealth: 5, color: 5, number: 6 },
-            '天秤座': { level: 1, love: 6, career: 6, wealth: 6, color: 6, number: 7 },
-            '天蝎座': { level: 2, love: 7, career: 7, wealth: 7, color: 0, number: 8 },
-            '射手座': { level: 3, love: 0, career: 0, wealth: 0, color: 1, number: 9 },
-            '摩羯座': { level: 4, love: 1, career: 1, wealth: 1, color: 2, number: 1 },
-            '水瓶座': { level: 0, love: 2, career: 2, wealth: 2, color: 3, number: 2 },
-            '双鱼座': { level: 1, love: 3, career: 3, wealth: 3, color: 4, number: 3 }
+            '处女座': { level: 0, love: 4, career: 4, wealth: 4, color: 5, number: 6 },
+            '天秤座': { level: 1, love: 0, career: 0, wealth: 0, color: 6, number: 7 },
+            '天蝎座': { level: 2, love: 1, career: 1, wealth: 1, color: 0, number: 8 },
+            '射手座': { level: 3, love: 2, career: 2, wealth: 2, color: 1, number: 9 },
+            '摩羯座': { level: 4, love: 3, career: 3, wealth: 3, color: 2, number: 1 },
+            '水瓶座': { level: 0, love: 4, career: 4, wealth: 4, color: 3, number: 2 },
+            '双鱼座': { level: 1, love: 0, career: 0, wealth: 0, color: 4, number: 3 }
         };
         
         const zodiacData = zodiacMap[zodiac] || { level: 0, love: 0, career: 0, wealth: 0, color: 0, number: 1 };
@@ -985,10 +985,10 @@
             level: zodiacData.level + 1,
             levelName: FORTUNE_LEVELS[zodiacData.level],
             advice: FORTUNE_ADVICES[zodiacData.level],
-            love: LOVE_FORTUNES[zodiacData.love],
-            career: CAREER_FORTUNES[zodiacData.career],
-            wealth: WEALTH_FORTUNES[zodiacData.wealth],
-            luckyColor: LUCKY_COLORS[zodiacData.color].name,
+            love: LOVE_FORTUNES[zodiacData.love % LOVE_FORTUNES.length],
+            career: CAREER_FORTUNES[zodiacData.career % CAREER_FORTUNES.length],
+            wealth: WEALTH_FORTUNES[zodiacData.wealth % WEALTH_FORTUNES.length],
+            luckyColor: LUCKY_COLORS[zodiacData.color % LUCKY_COLORS.length].name,
             luckyNumber: (zodiacData.number + dateSeed) % 9 + 1
         };
     }
