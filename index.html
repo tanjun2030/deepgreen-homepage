@@ -329,10 +329,10 @@
             </div>
             
             <div class="action-buttons">
-                <button class="action-btn" onclick="refreshDailySentence()">🔄刷新</button>
-                <button class="action-btn" onclick="copyDailySentence()">📋复制</button>
-                <button class="action-btn" onclick="shareDailySentence()">📤分享</button>
-                <button class="action-btn" onclick="openPosterModal(currentDailySentence)">🖼️生成海报</button>
+                <button class="action-btn" onclick="refreshDailySentence()">刷新</button>
+                <button class="action-btn" onclick="copyDailySentence()">复制</button>
+                <button class="action-btn" onclick="shareDailySentence()">分享</button>
+                <button class="action-btn" onclick="openPosterModal(currentDailySentence, 'daily', currentDailyCategory)">生成海报</button>
             </div>
         </div>
         
@@ -556,10 +556,10 @@
             </div>
             
             <div class="action-buttons">
-                <button class="action-btn" onclick="refreshHappiness()">🔄刷新</button>
-                <button class="action-btn" onclick="copyHappiness()">📋复制</button>
-                <button class="action-btn" onclick="shareHappiness()">📤分享</button>
-                <button class="action-btn" onclick="openPosterModal(currentHappiness)">🖼️生成海报</button>
+                <button class="action-btn" onclick="refreshHappiness()">刷新</button>
+                <button class="action-btn" onclick="copyHappiness()">复制</button>
+                <button class="action-btn" onclick="shareHappiness()">分享</button>
+                <button class="action-btn" onclick="openPosterModal(currentHappiness, 'happiness', currentHappinessCategory)">生成海报</button>
             </div>
         </div>
         
@@ -581,10 +581,10 @@
             </div>
             
             <div class="action-buttons">
-                <button class="action-btn" onclick="refreshBless()">🔄刷新</button>
-                <button class="action-btn" onclick="copyBless()">📋复制</button>
-                <button class="action-btn" onclick="shareBless()">📤分享</button>
-                <button class="action-btn" onclick="openPosterModal(currentBless)">🖼️生成海报</button>
+                <button class="action-btn" onclick="refreshBless()">刷新</button>
+                <button class="action-btn" onclick="copyBless()">复制</button>
+                <button class="action-btn" onclick="shareBless()">分享</button>
+                <button class="action-btn" onclick="openPosterModal(currentBless, 'bless', currentBlessCategory)">生成海报</button>
             </div>
         </div>
     </div>
@@ -599,6 +599,7 @@
                 <div style="text-align: center; margin-top: 40px; opacity: 0.7; color: white; font-size: 14px;">DeepGreen宇宙科技</div>
             </div>
             <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <button class="action-btn" onclick="changePosterSentence()">换文案</button>
                 <button class="action-btn" onclick="changePosterBg()">换背景</button>
                 <button class="action-btn" onclick="downloadPoster()">保存图片</button>
                 <button class="action-btn" onclick="closePosterModal()">关闭</button>
@@ -1288,16 +1289,44 @@
     ];
     let currentPosterBgIndex = 0;
     let currentPosterText = '';
+    let currentPosterType = ''; // daily / happiness / bless
+    let currentPosterCategory = ''; // 对应分类
 
     // 打开海报生成弹窗
-    function openPosterModal(text) {
+    function openPosterModal(text, type, category) {
         currentPosterText = text;
+        currentPosterType = type;
+        currentPosterCategory = category;
         document.getElementById('posterText').textContent = text;
         // 随机背景
         currentPosterBgIndex = Math.floor(Math.random() * POSTER_BG_COLORS.length);
         const bg = POSTER_BG_COLORS[currentPosterBgIndex];
         document.getElementById('posterContainer').style.background = `linear-gradient(135deg, ${bg.main} 0%, ${bg.light} 100%)`;
         document.getElementById('posterModal').style.display = 'block';
+    }
+
+    // 换同分类文案
+    function changePosterSentence() {
+        let newText = '';
+        if (currentPosterType === 'daily') {
+            newText = getRandomDailySentence(currentPosterCategory, dailySentences[currentPosterCategory], shownDailySentences[currentPosterCategory]);
+            // 更新当前每日一句的内容
+            currentDailySentence = newText;
+            displayDailySentence(newText);
+        } else if (currentPosterType === 'happiness') {
+            newText = getRandomHappiness(currentPosterCategory, happinessSentences[currentPosterCategory], shownHappiness[currentPosterCategory]);
+            // 更新当前小确幸的内容
+            currentHappiness = newText;
+            displayHappiness(newText);
+        } else if (currentPosterType === 'bless') {
+            newText = getRandomBless(currentPosterCategory, blessCards[currentPosterCategory], shownBless[currentPosterCategory]);
+            // 更新当前祝福卡的内容
+            currentBless = newText;
+            displayBless(newText);
+        }
+        currentPosterText = newText;
+        document.getElementById('posterText').textContent = newText;
+        showToast('已更换文案 ✅');
     }
 
     // 更换海报背景
