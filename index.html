@@ -1478,6 +1478,26 @@
     let cloudHappiness = { life: [], work: [], heal: [], bless: [] };
     let cloudBlessCards = { birthday: [], festival: [], promotion: [], graduation: [] };
 
+    // 批量插入数据到云数据库
+    async function batchInsertData(collectionName, dataMap) {
+        try {
+            const collection = db.collection(collectionName);
+            for (const category in dataMap) {
+                const contents = dataMap[category];
+                for (const content of contents) {
+                    await collection.add({
+                        category: category,
+                        content: content,
+                        createTime: db.serverDate()
+                    });
+                }
+            }
+            console.log(`${collectionName} 数据批量插入完成`);
+        } catch (error) {
+            console.error(`${collectionName} 数据插入失败:`, error);
+        }
+    }
+
     async function preloadCloudData() {
         try {
             // 加载每日一句数据
@@ -1488,6 +1508,12 @@
                         cloudDailySentences[item.category].push(item.content);
                     }
                 });
+            } else {
+                // 云数据库为空，自动插入本地数据
+                await batchInsertData('daily_sentences', dailySentences);
+                // 重新加载
+                await preloadCloudData();
+                return;
             }
 
             // 加载小确幸数据
@@ -1498,6 +1524,12 @@
                         cloudHappiness[item.category].push(item.content);
                     }
                 });
+            } else {
+                // 云数据库为空，自动插入本地数据
+                await batchInsertData('happiness', happinessSentences);
+                // 重新加载
+                await preloadCloudData();
+                return;
             }
 
             // 加载祝福卡数据
@@ -1508,9 +1540,15 @@
                         cloudBlessCards[item.category].push(item.content);
                     }
                 });
+            } else {
+                // 云数据库为空，自动插入本地数据
+                await batchInsertData('bless_cards', blessCards);
+                // 重新加载
+                await preloadCloudData();
+                return;
             }
 
-            console.log('云数据加载完成');
+            console.log('云数据加载完成，所有集合和初始数据已自动创建');
         } catch (error) {
             console.error('云数据加载失败:', error);
         }
