@@ -1599,5 +1599,23 @@
         await initCloud();
         // 预加载所有星座的数据
         preloadData();
+        
+        // 自动检查并同步数据到云数据库
+        setTimeout(async () => {
+            // 检查云数据库是否已有数据
+            if (cloudDataLoaded && db) {
+                try {
+                    const res = await db.collection('daily_sentences').limit(1).get();
+                    if (res.data.length === 0) {
+                        console.log('云数据库为空，自动开始同步数据...');
+                        showToast('正在自动同步数据...');
+                        await syncAllDataToCloud();
+                        showToast('数据自动同步完成 ✅');
+                    }
+                } catch (error) {
+                    console.log('自动同步跳过:', error);
+                }
+            }
+        }, 3000);
     });
 </script>
