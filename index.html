@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeepGreen</title>
+    <title>老谭AI能量站</title>
     <script src="https://cdn.tailwindcss.com"></script>
 <!-- 引入云开发Web SDK -->
 <script src="https://res.wx.qq.com/open/js/cloudbase/1.7.1/cloud.js"></script>
@@ -843,7 +843,7 @@
     
     function shareDailySentence() {
         if (!currentDailySentence) return;
-        const shareText = currentDailySentence + '\n—— 来自「每日一句」DeepGreen宇宙科技';
+        const shareText = currentDailySentence + '\n—— 来自「每日一句」老谭AI能量站';
         if (navigator.share) {
             navigator.share({ title: '每日一句', text: shareText });
         } else {
@@ -973,7 +973,7 @@
     
     function shareLuckyInfo() {
         if (!currentLuckyInfo) return;
-        const shareText = `✨ ${currentLuckyInfo.zodiac}今日幸运色 ✨\n\n🎨 ${currentLuckyInfo.color.name}\n🔢 幸运数字：${currentLuckyInfo.number}\n🧭 幸运方位：${currentLuckyInfo.direction}\n💡 穿搭建议：${currentLuckyInfo.advice}\n\n—— 来自「每日幸运」DeepGreen宇宙科技`;
+        const shareText = `✨ ${currentLuckyInfo.zodiac}今日幸运色 ✨\n\n🎨 ${currentLuckyInfo.color.name}\n🔢 幸运数字：${currentLuckyInfo.number}\n🧭 幸运方位：${currentLuckyInfo.direction}\n💡 穿搭建议：${currentLuckyInfo.advice}\n\n—— 来自「每日幸运」老谭AI能量站`;
         if (navigator.share) {
             navigator.share({ title: `${currentLuckyInfo.zodiac}今日幸运色`, text: shareText });
         } else {
@@ -1094,7 +1094,7 @@
     
     function shareFortune() {
         if (!currentFortune) return;
-        const shareText = `✨ ${currentFortune.zodiac}今日运势 ✨\n\n⭐ 今日运势：${currentFortune.levelName}\n💕 爱情：${currentFortune.love}\n💼 事业：${currentFortune.career}\n💰 财运：${currentFortune.wealth}\n💡 建议：${currentFortune.advice}\n🎨 幸运色：${currentFortune.luckyColor}\n🔢 幸运数字：${currentFortune.luckyNumber}\n\n—— 来自「每日运势」DeepGreen宇宙科技`;
+        const shareText = `✨ ${currentFortune.zodiac}今日运势 ✨\n\n⭐ 今日运势：${currentFortune.levelName}\n💕 爱情：${currentFortune.love}\n💼 事业：${currentFortune.career}\n💰 财运：${currentFortune.wealth}\n💡 建议：${currentFortune.advice}\n🎨 幸运色：${currentFortune.luckyColor}\n🔢 幸运数字：${currentFortune.luckyNumber}\n\n—— 来自「每日运势」老谭AI能量站`;
         if (navigator.share) {
             navigator.share({ title: `${currentFortune.zodiac}今日运势`, text: shareText });
         } else {
@@ -1402,7 +1402,7 @@
     
     function shareHappiness() {
         if (!currentHappiness) return;
-        const shareText = currentHappiness + '\n—— 来自「每日小确幸」DeepGreen宇宙科技';
+        const shareText = currentHappiness + '\n—— 来自「每日小确幸」老谭AI能量站';
         if (navigator.share) {
             navigator.share({ title: '每日小确幸', text: shareText });
         } else {
@@ -1524,7 +1524,7 @@
     
     function shareBless() {
         if (!currentBless) return;
-        const shareText = currentBless + '\n—— 来自「祝福卡生成」DeepGreen宇宙科技';
+        const shareText = currentBless + '\n—— 来自「祝福卡生成」老谭AI能量站';
         if (navigator.share) {
             navigator.share({ title: '祝福卡', text: shareText });
         } else {
