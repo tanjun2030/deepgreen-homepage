@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DeepGreen宇宙科技</title>
     <script src="https://cdn.tailwindcss.com"></script>
+<!-- 引入云开发Web SDK -->
+<script src="https://res.wx.qq.com/open/js/cloudbase/1.7.1/cloud.js"></script>
     <style>
         body {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -758,11 +760,13 @@
     let currentDailySentence = '';
     
     function getRandomDailySentence(category, categorySentences, shownSet) {
-        const available = categorySentences.filter(function(s) { return !shownSet.has(s); });
+        // 优先使用云数据，没有则用本地数据
+        const mergedSentences = getMergedData(cloudDailySentences[category], categorySentences);
+        const available = mergedSentences.filter(function(s) { return !shownSet.has(s); });
         if (available.length === 0) {
             shownSet.clear();
             shownDailySentences[category] = new Set();
-            available.push.apply(available, categorySentences);
+            available.push.apply(available, mergedSentences);
         }
         const randomIndex = Math.floor(Math.random() * available.length);
         const selected = available[randomIndex];
@@ -1250,11 +1254,13 @@
     let currentHappiness = '';
     
     function getRandomHappiness(category, sentences, shownSet) {
-        const available = sentences.filter(s => !shownSet.has(s));
+        // 优先使用云数据，没有则用本地数据
+        const mergedSentences = getMergedData(cloudHappiness[category], sentences);
+        const available = mergedSentences.filter(s => !shownSet.has(s));
         if (available.length === 0) {
             shownSet.clear();
             shownHappiness[category] = new Set();
-            available.push(...sentences);
+            available.push(...mergedSentences);
         }
         const randomIndex = Math.floor(Math.random() * available.length);
         const selected = available[randomIndex];
@@ -1373,11 +1379,13 @@
     let currentBless = '';
     
     function getRandomBless(category, sentences, shownSet) {
-        const available = sentences.filter(s => !shownSet.has(s));
+        // 优先使用云数据，没有则用本地数据
+        const mergedSentences = getMergedData(cloudBlessCards[category], sentences);
+        const available = mergedSentences.filter(s => !shownSet.has(s));
         if (available.length === 0) {
             shownSet.clear();
             shownBless[category] = new Set();
-            available.push(...sentences);
+            available.push(...mergedSentences);
         }
         const randomIndex = Math.floor(Math.random() * available.length);
         const selected = available[randomIndex];
@@ -1441,10 +1449,89 @@
         }
     }
 
+    // ========== 微信云开发初始化 ==========
+    let app = null;
+    let db = null;
+    let cloudDataLoaded = false;
+
+    async function initCloud() {
+        try {
+            app = window.cloudbase.init({
+                env: 'cloud1-2gyunsvp996c4a0f',
+                appSign: 'wxe0bc63c45ad39a98'
+            });
+            // 匿名登录
+            await app.auth().anonymousAuthProvider().signIn();
+            db = app.database();
+            cloudDataLoaded = true;
+            console.log('云开发初始化成功');
+            // 预加载云数据库数据
+            await preloadCloudData();
+        } catch (error) {
+            console.error('云开发初始化失败，使用本地数据兜底:', error);
+            cloudDataLoaded = false;
+        }
+    }
+
+    // 预加载云数据库数据
+    let cloudDailySentences = { motivational: [], humorous: [], philosophical: [], romantic: [] };
+    let cloudHappiness = { life: [], work: [], heal: [], bless: [] };
+    let cloudBlessCards = { birthday: [], festival: [], promotion: [], graduation: [] };
+
+    async function preloadCloudData() {
+        try {
+            // 加载每日一句数据
+            const dailyRes = await db.collection('daily_sentences').get();
+            if (dailyRes.data && dailyRes.data.length > 0) {
+                dailyRes.data.forEach(item => {
+                    if (cloudDailySentences[item.category]) {
+                        cloudDailySentences[item.category].push(item.content);
+                    }
+                });
+            }
+
+            // 加载小确幸数据
+            const happinessRes = await db.collection('happiness').get();
+            if (happinessRes.data && happinessRes.data.length > 0) {
+                happinessRes.data.forEach(item => {
+                    if (cloudHappiness[item.category]) {
+                        cloudHappiness[item.category].push(item.content);
+                    }
+                });
+            }
+
+            // 加载祝福卡数据
+            const blessRes = await db.collection('bless_cards').get();
+            if (blessRes.data && blessRes.data.length > 0) {
+                blessRes.data.forEach(item => {
+                    if (cloudBlessCards[item.category]) {
+                        cloudBlessCards[item.category].push(item.content);
+                    }
+                });
+            }
+
+            console.log('云数据加载完成');
+        } catch (error) {
+            console.error('云数据加载失败:', error);
+        }
+    }
+
+    // 获取数据：优先用云数据，没有则用本地数据
+    function getMergedData(cloudData, localData) {
+        if (cloudDataLoaded && cloudData && cloudData.length > 0) {
+            return cloudData;
+        }
+        return localData;
+    }
+
     // 初始化
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', async function() {
         // 设置默认日期
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('almanac-date').value = today;
+        // 初始化云开发
+        await initCloud();
+        // 预加载所有星座的数据
+        preloadData();
     });
 </script>
