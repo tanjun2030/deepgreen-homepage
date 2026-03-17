@@ -295,6 +295,15 @@
                         <p>生活温暖 · 正向鼓励 · 治愈语录</p>
                     </div>
                 </div>
+                
+                <!-- 祝福卡生成 -->
+                <div class="product-card" onclick="showSection('blessCard')">
+                    <div class="product-icon">💌</div>
+                    <div class="product-info">
+                        <h3>祝福卡生成</h3>
+                        <p>生日 · 节日 · 升职 · 祝福文案</p>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -545,6 +554,30 @@
                 <button class="action-btn" onclick="refreshHappiness()">🔄刷新</button>
                 <button class="action-btn" onclick="copyHappiness()">📋复制</button>
                 <button class="action-btn" onclick="shareHappiness()">📤分享</button>
+            </div>
+        </div>
+        
+        <!-- 祝福卡生成 section -->
+        <div class="section" id="section-blessCard">
+            <a class="back-btn" onclick="showSection('home')">← 返回首页</a>
+            
+            <h2 style="text-align: center; color: white; font-size: 24px; font-weight: 700; margin-bottom: 24px;">💌 祝福卡生成</h2>
+            
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="birthday" onclick="getBlessCard('birthday')">🎂 生日</button>
+                <button class="category-btn" data-category="festival" onclick="getBlessCard('festival')">🎊 节日</button>
+                <button class="category-btn" data-category="promotion" onclick="getBlessCard('promotion')">🎉 升职</button>
+                <button class="category-btn" data-category="graduation" onclick="getBlessCard('graduation')">🎓 毕业</button>
+            </div>
+            
+            <div class="result-box">
+                <p id="bless-result">点击按钮获取祝福文案...</p>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="action-btn" onclick="refreshBless()">🔄刷新</button>
+                <button class="action-btn" onclick="copyBless()">📋复制</button>
+                <button class="action-btn" onclick="shareBless()">📤分享</button>
             </div>
         </div>
     </div>
@@ -1281,6 +1314,129 @@
             navigator.share({ title: '每日小确幸', text: shareText });
         } else {
             copyHappiness();
+            showToast('已复制，可以分享给朋友了 ✅');
+        }
+    }
+    
+    // ========== 祝福卡生成 ==========
+    const blessCards = {
+        birthday: [
+            '祝生日快乐！愿你每一岁都奔走在自己的热爱里，所得皆所愿，所行皆坦途，永远开心，永远被爱🥳',
+            '生日快乐呀！愿你新的一岁，有趣有盼，无灾无难，兜里有钱，心里有光，所有的美好都如期而至🎂',
+            '恭喜你又解锁了新的一岁！祝你生日快乐，平安喜乐，万事胜意，想要的都拥有，得不到的都释怀✨',
+            '今天是你的生日，愿所有的快乐、所有的幸福、所有的温馨、所有的好运都围绕在你身边，生日快乐🎈',
+            '祝生日快乐！愿你今后的日子里，眼里是阳光，笑里是坦荡，未来的旅程，星辰大海，繁花似锦🌟',
+            '生日快乐呀！愿你新的一岁，不将就，不辜负，每一步都走得踏实坚定，每一天都过得开心满足🥰',
+            '祝你生日快乐！愿你想要的都得到，得到的都美好，平安健康，顺心如意，永远是被爱包围的小朋友🎁',
+            '生日快乐！愿你新的一岁，无事绊心弦，所念皆如愿，生活明朗，万物可爱，人间值得，未来可期🎊'
+        ],
+        festival: [
+            '新年快乐！祝你新的一年，平安喜乐，万事胜意，财源广进，阖家幸福，所有的美好都如约而至🧧',
+            '中秋快乐！愿你月圆人圆，事事圆满，阖家欢乐，幸福安康，吃好喝好，快乐不倒🥮',
+            '端午安康！祝你万事顺遂，平安健康，粽叶飘香，幸福绵长，假期愉快呀🍙',
+            '国庆快乐！祝祖国繁荣昌盛，祝你假期愉快，吃好喝好，无忧无虑，开开心心过长假🇨🇳',
+            '情人节快乐！愿天下有情人终成眷属，单身的朋友也能遇到属于自己的美好，天天开心❤️',
+            '女神节快乐！愿你永远被温柔以待，眼里有光，心里有爱，活成自己喜欢的样子，永远美丽永远自信💐',
+            '劳动节快乐！愿你所有的付出都有回报，所有的努力都不被辜负，好好休息，享受假期呀☀️',
+            '圣诞节快乐！愿你被爱包围，被幸福围绕，礼物多多，快乐多多，所有的愿望都实现🎄'
+        ],
+        promotion: [
+            '恭喜升职！能力配得上努力，付出配得上回报，祝你未来职场一路开挂，前途似锦，步步高升🎉',
+            '祝贺你升职啦！真为你开心，你的努力和实力大家都看在眼里，未来可期，继续发光发热吧✨',
+            '恭喜高升！祝你在新的岗位上大展宏图，事业蒸蒸日上，薪水涨涨涨，好运连连来💰',
+            '太棒了！恭喜你升职，这是你应得的奖励，未来继续加油，创造更多精彩，前途无量呀👏',
+            '恭喜升职！愿你新的职位新的开始，工作顺利，事事顺心，带领团队创造更好的成绩，未来可期🚀',
+            '祝贺你晋升！你的优秀值得所有的肯定，接下来的日子继续闪闪发光，步步高升，越来越好🥳',
+            '哇恭喜升职！真的太棒了，能力出众的你值得更好的平台，祝未来工作顺利，前程似锦🌟',
+            '升职快乐呀！祝你在新的岗位上得心应手，大展拳脚，事业更上一层楼，财源广进，好运不断🎊'
+        ],
+        graduation: [
+            '毕业快乐！愿你此去繁花似锦，再相逢依旧如故，未来的日子闪闪发光，前程似锦，未来可期🎓',
+            '恭喜毕业！愿你走出半生，归来仍是少年，保持热爱，奔赴下一场山海，未来的路一切顺利✨',
+            '毕业快乐呀！祝你以后的人生，顺风顺水，扶摇直上，百事无忌，平安喜乐，万事胜意🌟',
+            '恭喜你顺利毕业！愿你未来的道路上，有诗有梦，有坦荡荡的远方，所有的美好都在等你🚀',
+            '毕业快乐！愿你以梦为马，不负韶华，在新的征程上闪闪发光，闯出属于自己的一片天🥳',
+            '恭喜毕业啦！学生时代圆满结束，新的旅程即将开启，祝你工作顺利，生活愉快，未来一切都好🎈',
+            '毕业快乐！愿你保持那一份热爱，奔赴下一场山海，希望下一次见面，可以鲜活又明亮🌈',
+            '恭喜毕业！愿你今后的日子里，即使单枪匹马，也能勇敢无畏，活成自己想要的样子，加油💪'
+        ]
+    };
+    
+    const shownBless = {
+        birthday: new Set(),
+        festival: new Set(),
+        promotion: new Set(),
+        graduation: new Set()
+    };
+    
+    let currentBlessCategory = 'birthday';
+    let currentBless = '';
+    
+    function getRandomBless(category, sentences, shownSet) {
+        const available = sentences.filter(s => !shownSet.has(s));
+        if (available.length === 0) {
+            shownSet.clear();
+            shownBless[category] = new Set();
+            available.push(...sentences);
+        }
+        const randomIndex = Math.floor(Math.random() * available.length);
+        const selected = available[randomIndex];
+        shownSet.add(selected);
+        shownBless[category] = shownSet;
+        return selected;
+    }
+    
+    function getBlessCard(category) {
+        updateBlessCategoryUI(category);
+        currentBlessCategory = category;
+        const sentence = getRandomBless(category, blessCards[category], shownBless[category]);
+        displayBless(sentence);
+        currentBless = sentence;
+    }
+    
+    function refreshBless() {
+        getBlessCard(currentBlessCategory);
+    }
+    
+    function displayBless(sentence) {
+        const resultEl = document.getElementById('bless-result');
+        resultEl.textContent = '';
+        resultEl.style.transition = 'opacity 0.2s ease';
+        resultEl.style.opacity = '0';
+        resultEl.textContent = sentence;
+        setTimeout(() => {
+            resultEl.style.opacity = '1';
+        }, 50);
+    }
+    
+    function updateBlessCategoryUI(category) {
+        const buttons = document.querySelectorAll('#section-blessCard .category-btn');
+        buttons.forEach(btn => {
+            if (btn.dataset.category === category) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    }
+    
+    function copyBless() {
+        if (navigator.clipboard && currentBless) {
+            navigator.clipboard.writeText(currentBless).then(() => {
+                showToast('已复制到剪贴板 ✅');
+            });
+        } else {
+            showToast('复制失败，请手动复制');
+        }
+    }
+    
+    function shareBless() {
+        if (!currentBless) return;
+        const shareText = currentBless + '\n—— 来自「祝福卡生成」DeepGreen宇宙科技';
+        if (navigator.share) {
+            navigator.share({ title: '祝福卡', text: shareText });
+        } else {
+            copyBless();
             showToast('已复制，可以分享给朋友了 ✅');
         }
     }
